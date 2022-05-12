@@ -6,34 +6,24 @@ import Loader from "./Loader";
 
 
 function App() {
+    const [spin, setSpin] = useState(true)
+    const [current, setCurrent] = useState(0)
 
     function MyBone() {
         const stl = useLoader(STLLoader, ['bone.stl', 'heart.stl', 'LLL.stl'])
         const group = useRef<any>(null!)
-        const [spin, setSpin] = useState(4)
-
-        const handleClick = () => {
-            if(spin){
-                return setSpin(1)
-            }
-            return setSpin(4)
-        }
 
         useFrame(({clock}) => {
-            group.current.rotation.set(-Math.PI / 2, 0, 0)
-            group.current.position.set(0, 50, 0)
-            group.current.rotation.z = clock.getElapsedTime() / spin
-
-        })
-
-        stl.map((data) => {
-            console.log(data)
+            if (spin) {
+                setCurrent(prev => prev + 0.01)
+            }
+            group.current.rotation.z = current
         })
 
         return (
             <Suspense fallback={""}>
                 <Center>
-                    <group onClick={handleClick} dispose={null} ref={group}>
+                    <group rotation={[-Math.PI / 2, 0, 0]} dispose={null} ref={group}>
                         {
                             stl.map((stl, idx) =>
                                 <mesh key={idx} scale={1.2} castShadow receiveShadow geometry={stl}>
@@ -49,7 +39,9 @@ function App() {
 
     return (
         <div className='App'>
-            <button>SPIN</button>
+            <button onClick={() => setSpin((prev) => !prev)}>
+                {spin ? 'STOP' : 'SPIN'}
+            </button>
             <Canvas>
                 <Suspense fallback={<Loader/>}>
                     <PerspectiveCamera makeDefault fov={60} aspect={window.innerWidth / window.innerHeight}
@@ -63,6 +55,6 @@ function App() {
             </Canvas>
         </div>
     );
-};
+}
 
 export default App
