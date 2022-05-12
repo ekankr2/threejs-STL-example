@@ -10,6 +10,14 @@ Example template for loading STL files using react-three-fiber
   [Demo]: https://codesandbox.io/s/react-three-fiber-stl-bhoc6g?file=/src/App.tsx
 
 
+# Getting started
+
+Clone or download the files
+
+Then run `npm i` inside project root folder and after that `npm run dev`
+
+You can change .STL files in the public folder for a different Mesh
+
 ### Core
 
 - [vite](https://github.com/vitejs/vite)
