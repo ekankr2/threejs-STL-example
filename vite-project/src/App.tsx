@@ -10,7 +10,7 @@ function App() {
     const [spin, setSpin] = useState(true)
     const [current, setCurrent] = useState(0)
 
-    function MyBone() {
+    function MyStls() {
         const stl = useLoader(STLLoader, ['bone.stl', 'heart.stl', 'LLL.stl'])
         const group = useRef<any>(null!)
 
@@ -41,15 +41,15 @@ function App() {
 
     return (
         <div className='App'>
-            <button onClick={() => setSpin((prev) => !prev)}>
+            <button className="spin-btn" onClick={() => setSpin((prev) => !prev)}>
                 {spin ? 'STOP' : 'SPIN'}
             </button>
-            <Canvas>
+            <Canvas style={{backgroundColor: 'black'}}>
                 <Suspense fallback={<Loader/>}>
                     <PerspectiveCamera makeDefault fov={60} aspect={window.innerWidth / window.innerHeight}
                                        position={[3, 0.15, 3]} near={1} far={5000} position-z={600}>
                     </PerspectiveCamera>
-                    <MyBone/>
+                    <MyStls/>
                     <directionalLight color={0xffddcc} position={[1, 0.75, 0.5]}/>
                     <directionalLight color={0xccccff} position={[-1, 0.75, -0.5]}/>
                     <OrbitControls/>

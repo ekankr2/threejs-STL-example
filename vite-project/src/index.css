@@ -14,5 +14,10 @@ code {
 
 .App {
   height: 100vh;
-  background-color: rgba(220,222,224,0.58);
+}
+
+.spin-btn {
+  position: absolute;
+  z-index: 10;
+  padding: 5px 10px;
 }
