@@ -7,7 +7,7 @@ Example template for loading STL files using react-three-fiber
 
 * **CodeSandbox: [Demo Link][Demo]**
 
-  [Demo]: https://codesandbox.io/s/react-three-fiber-stl-bhoc6g?file=/src/App.tsx
+  [Demo]: https://codesandbox.io/s/react-three-fiber-stl-example-oc73j6?file=/src/App.tsx
 
 
 # Getting started
