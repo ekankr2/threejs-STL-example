@@ -4,6 +4,7 @@ import {STLLoader} from 'three/examples/jsm/loaders/STLLoader'
 import {Center, OrbitControls, PerspectiveCamera} from '@react-three/drei'
 import Loader from "./Loader";
 
+const color = ['#9c9ea1','#781e14','#d66154']
 
 function App() {
     const [spin, setSpin] = useState(true)
@@ -26,8 +27,9 @@ function App() {
                     <group rotation={[-Math.PI / 2, 0, 0]} dispose={null} ref={group}>
                         {
                             stl.map((stl, idx) =>
-                                <mesh key={idx} scale={1.2} castShadow receiveShadow geometry={stl}>
-                                    <meshStandardMaterial color={'gray'}/>
+                                <mesh key={idx} scale={1.2} castShadow receiveShadow>
+                                    <primitive attach="geometry" object={stl}></primitive>
+                                    <meshStandardMaterial color={color[idx]}/>
                                 </mesh>
                             )
                         }
