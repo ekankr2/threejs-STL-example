@@ -1,22 +1,19 @@
-import React, {FC, Suspense, useRef} from 'react';
+import React, {FC, Suspense, useRef, useState} from 'react';
 import {useFrame, useLoader} from "@react-three/fiber";
 import {STLLoader} from "three/examples/jsm/loaders/STLLoader";
 import {Center} from "@react-three/drei";
+import {useControl} from "react-three-gui";
 
-const color = ['#9c9ea1','#781e14','#d66154']
+const color = ['#9c9ea1', '#781e14', '#d66154']
 
-interface Props {
-    spin: boolean
-    current: number
-    setCurrent: (p: (prev: number) => number) => void
-}
-
-const MyStls: FC<Props> = ({spin, current, setCurrent}) => {
+const MyStls = () => {
     const stl = useLoader(STLLoader, ['bone.stl', 'heart.stl', 'LLL.stl'])
     const group = useRef<any>(null!)
+    const [current, setCurrent] = useState(0)
+    const spinner = useControl('Spin', {type: 'boolean'});
 
-    useFrame(({clock}) => {
-        if (spin) {
+    useFrame(() => {
+        if (spinner) {
             setCurrent((prev: number) => prev + 0.01)
         }
         group.current.rotation.z = current
