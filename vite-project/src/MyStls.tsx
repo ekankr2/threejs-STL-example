@@ -1,19 +1,28 @@
-import React, {FC, Suspense, useRef, useState} from 'react';
+import React, {FC, Suspense, useEffect, useRef, useState} from 'react';
 import {useFrame, useLoader} from "@react-three/fiber";
 import {STLLoader} from "three/examples/jsm/loaders/STLLoader";
 import {Center} from "@react-three/drei";
-import {useControl} from "react-three-gui";
+import {useControls} from "leva";
 
-const color = ['#9c9ea1', '#781e14', '#d66154']
 
 const MyStls = () => {
     const stl = useLoader(STLLoader, ['bone.stl', 'heart.stl', 'LLL.stl'])
     const group = useRef<any>(null!)
     const [current, setCurrent] = useState(0)
-    const spinner = useControl('Spin', {type: 'boolean'});
+    const [color, setColor] = useState<string[]>([])
+    const {spin, boneColor, heartColor, LLLColor} = useControls({
+        spin: false,
+        boneColor: {value: '#9c9ea1', label: 'bone color'},
+        heartColor: {value: '#781e14', label: 'heart color'},
+        LLLColor: {value: '#d66154', label: 'LLL color'},
+    });
+
+    useEffect(() => {
+        setColor([boneColor, heartColor, LLLColor])
+    }, [boneColor, heartColor, LLLColor])
 
     useFrame(() => {
-        if (spinner) {
+        if (spin) {
             setCurrent((prev: number) => prev + 0.01)
         }
         group.current.rotation.z = current
