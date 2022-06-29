@@ -19,10 +19,6 @@ const MyStls = () => {
         LLLColor: {value: '#d66154', label: 'LLL color'},
     });
 
-    console.log('stl: ',stl[0].uuid)
-
-    console.log(select[0]?.userData)
-
     useEffect(() => {
         setColor([boneColor, heartColor, LLLColor])
     }, [boneColor, heartColor, LLLColor])
@@ -44,8 +40,8 @@ const MyStls = () => {
                                 <mesh userData={{key: idx}} key={idx} scale={1.2} castShadow receiveShadow>
                                     <primitive attach="geometry" object={stl}></primitive>
                                     <meshStandardMaterial color={color[idx]}/>
-                                    <Edges visible={select[0]?.userData.key === idx}>
-                                        <meshBasicMaterial transparent color="#333" depthTest={false}/>
+                                    <Edges scale={1.1} renderOrder={1000} visible={select[0]?.userData.key === idx}>
+                                        <meshBasicMaterial transparent color="#e0d984" depthTest={false}/>
                                     </Edges>
                                 </mesh>
                             )
