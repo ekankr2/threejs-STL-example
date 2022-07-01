@@ -14,7 +14,8 @@ const Stls: FC<Props> = ({organName, color, opacity, stl}) => {
     const [store, materialProps] = useControls(selected, {
         name: {value: organName},
         color: {value: color},
-        opacity: {value: opacity, min: 0.2, max: 1}
+        opacity: {value: opacity, min: 0.2, max: 1},
+        visible: {value: true}
     })
     const isSelected = !!selected.find((sel) => sel === store)
 
