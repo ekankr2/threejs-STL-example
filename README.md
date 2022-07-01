@@ -23,6 +23,7 @@ You can change .STL files in the public folder for a different Mesh
 - [vite](https://github.com/vitejs/vite)
 - [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
 - [@react-three/drei](https://github.com/pmndrs/drei)
+- [leva](https://github.com/pmndrs/leva)
 
 
 ## Licence
