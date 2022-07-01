@@ -7,22 +7,18 @@ interface Props {
     selected: Object3D[] | undefined
 }
 
-export const Panel:FC<Props> = ({ selected }) => {
+export const Panel: FC<Props> = ({selected}) => {
 
-    if(selected){
-        return <LevaPanel store={selected[0]?.userData.store} />
+    if (selected) {
+        return <LevaPanel store={selected[0]?.userData.store}/>
     }
 
-    return <LevaPanel />
+    return <LevaPanel/>
 }
 
 export const useControls = (selected, props) => {
     const store = useCreateStore()
     const isFirst = selected[0] === store
-    // Hacky workaround to trick Leva into being able to handle mutiple stores ...
-    // The idea is basically that each panel has its own store and the active (first)
-    // panel just forwards its values to the other selected ones. It hides all props
-    // that are not shared among the selected panels.
     const materialProps = useControlsImpl(
         Object.keys(props).reduce(
             (acc, key) => ({
@@ -37,7 +33,7 @@ export const useControls = (selected, props) => {
             }),
             {}
         ),
-        { store },
+        {store},
         [selected]
     )
     return [store, materialProps]

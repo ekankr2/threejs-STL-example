@@ -1,6 +1,5 @@
 import React, {FC, Suspense, useRef} from 'react';
 import {Center, Select} from "@react-three/drei";
-import {Object3D} from "three";
 import Stls from "./Stls";
 import {useLoader} from "@react-three/fiber";
 import {STLLoader} from "three/examples/jsm/loaders/STLLoader";
@@ -10,11 +9,10 @@ const color = ['#9c9ea1', '#781e14', '#d66154']
 const opacity = [1, 1, 1]
 
 interface Props {
-    selected: Object3D[] | undefined
     setSelected: any
 }
 
-const Editor: FC<Props> = ({selected, setSelected}) => {
+const Editor: FC<Props> = ({setSelected}) => {
     const stl = useLoader(STLLoader, ['bone.stl', 'heart.stl', 'LLL.stl'])
     const group = useRef<any>(null!)
 
