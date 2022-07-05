@@ -1,10 +1,10 @@
 import React, {Suspense, useState} from 'react';
 import {OrbitControls, PerspectiveCamera} from '@react-three/drei'
-import Loader from "./Loader";
-import Editor from "./Editor";
+import Loader from "./components/Loader";
+import Editor from "./components/Editor";
 import {Canvas} from "@react-three/fiber";
 import {Object3D} from "three";
-import {Panel} from "./MultiLeva";
+import {Panel} from "./components/MultiLeva";
 
 
 function App() {

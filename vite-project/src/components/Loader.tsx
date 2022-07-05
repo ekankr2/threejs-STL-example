@@ -5,7 +5,11 @@ const Loader = () => {
     const {progress} = useProgress()
 
     return (
-        <Html center>{progress} % loaded</Html>
+        <Html center>
+            <span style={{color: "white"}}>
+                {Math.floor(progress)} % loaded
+            </span>
+        </Html>
     );
 };
 
