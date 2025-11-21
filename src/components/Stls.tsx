@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 import {Edges, useSelect} from "@react-three/drei";
 import {useControls} from "./MultiLeva";
 
@@ -20,7 +20,14 @@ const Stls: FC<Props> = ({organName, color, opacity, stl}) => {
     })
     const isSelected = !!selectedStores.find((sel) => sel === store)
 
-    console.log('Stls component:', organName, 'selected:', selected, 'isSelected:', isSelected)
+    // Notify parent when this mesh is selected
+    useEffect(() => {
+        if (isSelected) {
+            console.log('Mesh selected:', organName, 'store:', store)
+            // Dispatch custom event to notify Panel outside Canvas
+            window.dispatchEvent(new CustomEvent('levaStoreSelected', { detail: { store } }))
+        }
+    }, [isSelected, store, organName])
 
     return (
         <mesh userData={{store}} scale={1.2} castShadow receiveShadow>

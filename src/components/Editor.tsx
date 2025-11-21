@@ -9,18 +9,14 @@ const files = ['bone', 'heart', 'LLL']
 const color = ['#9c9ea1', '#781e14', '#d66154']
 const opacity = [1, 1, 1]
 
-interface Props {
-    setSelected: any
-}
-
-const Editor = ({setSelected}: Props) => {
+const Editor = () => {
     const stl = useLoader(STLLoader, ['bone.stl', 'heart.stl', 'LLL.stl'])
     const group = useRef<any>(null!)
 
     return (
         <Suspense fallback={<Loader/>}>
             <Center>
-                <Select onChange={setSelected}>
+                <Select>
                     <group rotation={[-Math.PI / 2, 0, 0]} dispose={null} ref={group}>
                         {
                             stl.map((stl, idx) =>
